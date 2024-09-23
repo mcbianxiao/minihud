@@ -106,7 +106,8 @@ public class ServuxStructuresPacket implements IClientPayloadData
             // Write Packet Buffer
             try
             {
-                output.writeBytes(this.buffer.readBytes(this.buffer.readableBytes()));
+                PacketByteBuf copiedBuffer = new PacketByteBuf(this.packet.copy());
+                output.writeBytes(copiedBuffer.readBytes(copiedBuffer.readableBytes()));
             }
             catch (Exception e)
             {
